@@ -4,6 +4,7 @@ Template for python CI/CD project setup.
 
 Using `tox`, `pytest`, `flake8`, `mypy`,  and `GitHub Actions` workflows.
 Using `make` as build system
+
 ---
 
 NOTE: Update project url and make sure the `Tests` tag is the same as `name: Tests` in `./.github/workflows/tests.yaml`
