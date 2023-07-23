@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-PROJ_NAME=python_proj
+PROJ_NAME=myproj
 
 # If the first argument is "rename"...
 ifeq (rename,$(firstword $(MAKECMDGOALS)))
@@ -17,6 +17,7 @@ help: ## Show this message
 
 rename: ## Rename this project. Args: <new-proj-name>
 	@echo renaming project to: $(RUN_ARGS)
+	@mv src/$(PROJ_NAME) src/$(RUN_ARGS)
 	@for f in $$(find . -name "*.py") Makefile README.md setup.cfg; \
 		do \
 		[ -f "$$f" ] && sed -i 's/$(PROJ_NAME)/$(RUN_ARGS)/g' $$f; \
