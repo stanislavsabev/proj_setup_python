@@ -1,7 +1,7 @@
 """python_proj package"""
 
 
-def main() -> 1:
+def main() -> str:
     return 'Hello world!'
 
 
