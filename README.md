@@ -78,11 +78,11 @@ TOTAL                             4      1    75%
 
 ```console
 $ mypy src
-Success: no issues found in 6 source files
+Success: no issues found in 2 source files
 ```
 
 ```console
-$ flake8 src tests
+$ flake8 src
 0
 ```
 
@@ -90,11 +90,10 @@ $ flake8 src tests
 ```console
 $ tox -e py311,mypy,flake8
 ...
-______________________________________________________________________________ summary ___
-  py311: commands succeeded
-  mypy: commands succeeded
-  flake8: commands succeeded
-  congratulations :)
+  py311: OK (3.19=setup[2.90]+cmd[0.29] seconds)
+  mypy: OK (2.71=setup[2.59]+cmd[0.12] seconds)
+  flake8: OK (2.64=setup[2.50]+cmd[0.14] seconds)
+  congratulations :) (8.71 seconds)
 ```
 
 ## GitHub Actions
