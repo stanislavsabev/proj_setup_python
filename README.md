@@ -64,16 +64,16 @@ $ pytest
 tests\test_main.py .
 [100%]
 
------------ coverage: platform win32, python 3.9.2-final-0 -----------
-Name                             Stmts   Miss  Cover
-----------------------------------------------------
-src\python_proj\__init__.py       0      0   100%
-src\python_proj\main.py           2      0   100%
-----------------------------------------------------
-TOTAL                                2      0   100%
+---------- coverage: platform linux, python 3.11.3-final-0 -----------
+Name                          Stmts   Miss  Cover
+-------------------------------------------------
+src/python_proj/__init__.py       0      0   100%
+src/python_proj/main.py           4      1    75%
+-------------------------------------------------
+TOTAL                             4      1    75%
 
 
-========================================================================= 1 passed in 0.11s ===
+========================================================================= 1 passed in 0.03s ===
 ```
 
 ```console
@@ -86,13 +86,12 @@ $ flake8 src tests
 0
 ```
 
-.. or all at once, with `tox`
-
+.. or all at once, with `tox` (change 'py311' based on your python version).
 ```console
-$ tox -e py37,mypy,flake8 # Change 'py37' based on your python version.
+$ tox -e py311,mypy,flake8
 ...
 ______________________________________________________________________________ summary ___
-  py37: commands succeeded
+  py311: commands succeeded
   mypy: commands succeeded
   flake8: commands succeeded
   congratulations :)

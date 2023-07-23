@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-PROJ_NAME=myproj
+PROJ_NAME=python_proj
 
 # If the first argument is "rename"...
 ifeq (rename,$(firstword $(MAKECMDGOALS)))
@@ -9,7 +9,7 @@ ifeq (rename,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY:  package help
+.PHONY: package help
 
 help: ## Show this message
 	@awk 'BEGIN {FS = ":.*##"; printf "Usage:\n  make \033[36m<target> [args...]\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -28,17 +28,18 @@ init: ## Install package and its dependencies into virtual environment
 	python -m venv .venv
 	source .venv/bin/activate \
 	&& python -m pip install --upgrade pip \
-	&& pip install -r requirements-dev.txt
-
+	&& pip install -r requirements-dev.txt \
+	&& pip install -e .
 
 run: ## Run example
 	source .venv/bin/activate \
 	&& python -m example
 
-
 clean: ## Clean virtual environment
 	rm -rf .venv
-
+	rm -rf src/$(PROJ_NAME).egg-info
+	find . -name "__pycache__" -type d -exec rm -rf {} +
+	find . -name ".pytest_cache" -type d -exec rm -rf {} +
 
 package: ## Package the project into .zip file
 	rm -rf .$(PROJ_NAME)
