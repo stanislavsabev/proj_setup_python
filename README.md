@@ -16,91 +16,59 @@ NOTE: Update project url and make sure the `Tests` tag is the same as `name: Tes
 # Project Setup
 
 ## Prerequisites
+
 Install the following tools:
 - make
-- Python 3.10
+- Python 3.10+
 
-### Create project directory.
+## Clone and rename the project
 
-Download this repo and copy the `python_proj/` directory.
+```shell
+$ git clone https://github.com/stanislavsabev/proj_setup_python.git \
+<your_project_name>
 
-```console
-$ git clone https://github.com/stanislavsabev/proj_setup.git
+$ cd <your_project_name>
 ```
 
-```console
-cp -R proj_setup.git/python_proj <myproject>
+Rename the project:
 
-cd <myproject>
+```shell
+$ make rename <your-project-name>
 ```
 
-Setup virtual environment and activate it.
+Install the application dependencies:
 
-```console
-$ python -m venv .venv
+```shell
+$ make init
 ```
 
-- Linux / macOS
+### Create new .git repo and update README (Optional)
 
-```console
-$ source ./.venv/bin/activate
+Create new git repository:
+
+```shell
+$ rm -rf .git && git init
+$ git add --all
+$ git commit -m "Initial commit"
 ```
+Update `README.md` (this file)
 
-- Windows
 
-```console
-> .\.venv\Scripts\activate.bat
-```
-
-Install requirements.
-
-```console
-$ python -m pip install --upgrade pip
-$ pip install -r requirements.txt
-$ pip install -r requirements-dev.txt
-```
-
-### Install locally
-
-Change the package name - optional, but recommended.
-
-- Rename in `src/` directory.
-
-```console
-$ mv src/python_proj src/<myproject>
-```
-
-- Change all mentions of `python_proj` in 
-
-```text
-  pyproject.toml
-  setup.cfg
-  setup.py
-  tests/test_start.py 
-  example.py
-```
-
-Install as editable package
-
-```bash
-$ pip install -e .
-```
-
-## Local Usage
+## Local Development
 
 Run `pytest`, `flake8` and `mypy` from the command line...
 
-```bash
+```shell
 $ pytest
-...
-tests\test_start.py .
+
+tests\test_main.py .
 [100%]
 
 ----------- coverage: platform win32, python 3.9.2-final-0 -----------
 Name                             Stmts   Miss  Cover
 ----------------------------------------------------
 src\python_proj\__init__.py       0      0   100%
-src\python_proj\start.py          2      0   100%
+src\python_proj\main.py           2      0   100%
 ----------------------------------------------------
 TOTAL                                2      0   100%
 
