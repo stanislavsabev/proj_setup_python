@@ -14,7 +14,7 @@ endif
 help: ## Show this message
 	@awk 'BEGIN {FS = ":.*##"; printf "Usage:\n  make \033[36m<target> [args...]\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-proj: create_dir create_repo replace_name initial_commit ## Create new project from this one. ARGS: <new-proj-name>
+proj: create_dir create_repo replace_name ## Create new project from this one. ARGS: <new-proj-name>
 	@printf "Successfully creaated project \033[36m$(RUN_ARGS)\033[0m\n"
 
 create_dir:
@@ -27,20 +27,19 @@ create_dir:
 
 create_repo:
 	@printf "Creaate git repository for \033[36m$(RUN_ARGS)\033[0m\n"
-	@cd ../$(RUN_ARGS) && git init && git add --all
+	@cd ../$(RUN_ARGS) && \
+		git init && git add --all
 
 replace_name:
 	@printf "Replace project name with \033[36m$(RUN_ARGS)\033[0m in all files\n"
 	@cd ../$(RUN_ARGS) && \
-	mv src/$(PROJ_NAME) src/$(RUN_ARGS) && \
-	for f in $$(find . -not -path "./.git/*" -not -name ".*"); \
+		mv src/$(PROJ_NAME) src/$(RUN_ARGS) && \
+		for f in $$(find . -name "*.py") \
+			Makefile README.md setup.cfg project.toml tox.ini; \
 		do \
-		[ -f "$$f" ] && sed -i 's/$(PROJ_NAME)/$(RUN_ARGS)/g' $$f; \
-	done
-
-initial_commit:
-	@printf "Creaate initial git commit\n"
-	@git add --all && git commit -m "Initial commit"
+			[ -f "$$f" ] && sed -i 's/$(PROJ_NAME)/$(RUN_ARGS)/g' $$f; \
+		done && \
+		git add --all
 
 init: ## Install package and its dependencies
 	python -m venv .venv

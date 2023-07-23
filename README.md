@@ -35,7 +35,6 @@ $ make proj <your-project-name>
 
 ```
 
-
 ### Create new .git repo and update README (Optional)
 
 Create new git repository:
