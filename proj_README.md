@@ -1,19 +1,17 @@
-# Python project
+# Project python_proj
 
-Template for python project with CI/CD setup.
+Python project with CI/CD setup.
 
 Using `tox`, `pytest`, `flake8`, `mypy`,  and `GitHub Actions` workflows.
 Using `make` as build system
 
 ---
 
-NOTE: Update project url and make sure the `Tests` tag is the same as `name: Tests` in `./.github/workflows/tests.yaml`
+NOTE: Update project url and make sure the `Tests` tag is the same as `name: Tests` in `./.github/workflows/main.yaml`
 
-[![Tests](https://github.com/<profile>/<project>/workflows/tests/badge.svg)](https://github.com/<profile>/<project>/actions/workflows/tests.yaml)
+[![Tests](https://github.com/<profile>/<project>/workflows/main/badge.svg)](https://github.com/<profile>/<project>/actions/workflows/main.yaml)
 
 ---
-
-# Project Setup
 
 ## Prerequisites
 
@@ -21,36 +19,32 @@ Install the following tools:
 - make
 - Python 3.10+
 
-## Clone this repository
+# Project Setup
+
+Install the application dependencies
 
 ```shell
-$ git clone https://github.com/stanislavsabev/proj_setup_python.git \
+$ make init
 ```
-## Create new project from this template
 
-Rename the project:
+or run `make help` for more options
 
 ```shell
-$ make proj <your-project-name>
+$ make help 
+Usage:
+  make <target> [args...]
 
+Targets:
+  help        Show this message
+  init        Install package and its dependencies
+  run         Run example
+  clean       Clean virtual environment
+  package     Package the project into .zip file
 ```
-
-
-### Create new .git repo and update README (Optional)
-
-Create new git repository:
-
-```shell
-$ rm -rf .git && git init
-$ git add --all
-$ git commit -m "Initial commit"
-```
-Update `README.md` (this file)
-
 
 ## Local Development
 
-Run `pytest`, `flake8` and `mypy` from the command line...
+You can run `pytest`, `flake8` or `mypy` from the command line...
 
 ```shell
 $ pytest
@@ -80,7 +74,8 @@ $ flake8 src
 0
 ```
 
-.. or all at once, with `tox` (change 'py311' based on your python version).
+.. or all at once, with `tox`
+
 ```shell
 $ tox -e py311,mypy,flake8
 ...
@@ -89,6 +84,8 @@ $ tox -e py311,mypy,flake8
   flake8: OK (2.64=setup[2.50]+cmd[0.14] seconds)
   congratulations :) (8.71 seconds)
 ```
+
+NOTE: change 'py311' based on your python version).
 
 ## GitHub Actions
 
