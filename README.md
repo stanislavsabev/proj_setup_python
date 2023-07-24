@@ -3,7 +3,7 @@
 Template for python project with CI/CD setup.
 
 Using `tox`, `pytest`, `flake8`, `mypy`,  and `GitHub Actions` workflows.
-Using `make` as build system
+Using `make` to automate tasks system
 
 ---
 
@@ -24,27 +24,33 @@ Install the following tools:
 ## Clone this repository
 
 ```shell
-$ git clone https://github.com/stanislavsabev/proj_setup_python.git \
+$ git clone https://github.com/stanislavsabev/proj_setup_python.git
 ```
 ## Create new project from this template
 
 Rename the project:
 
 ```shell
-$ make proj <your-project-name>
+$ make proj <your-proj-name>
 
+Creaate directory <your-proj-name> and copy project files
+Creaate git repository for <your-proj-name>
+Initialized empty Git repository in /home/tt/projects/proj_setup/<your-proj-name>/.git/
+Replace project name with <your-proj-name> in all files
+Successfully creaated project <your-proj-name>
 ```
 
 ### Create new .git repo and update README (Optional)
 
-Create new git repository:
+Go to the new project dir and create a git commit:
 
 ```shell
-$ rm -rf .git && git init
+$ cd ../<your-proj-dir>
 $ git add --all
 $ git commit -m "Initial commit"
 ```
-Update `README.md` (this file)
+
+Update the `README.md` file
 
 
 ## Local Development
