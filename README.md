@@ -3,7 +3,7 @@
 Template for python project with CI/CD setup.
 
 Using `tox`, `pytest`, `flake8`, `mypy`,  and `GitHub Actions` workflows.
-Using `make` to automate tasks system
+Using `make` to automate tasks
 
 ---
 
