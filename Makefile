@@ -14,7 +14,7 @@ endif
 help: ## Show this message
 	@awk 'BEGIN {FS = ":.*##"; printf "Usage:\n  make \033[36m<target> [args...]\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-proj: create_dir create_repo replace_name ## Create new project from this one. ARGS: <new-proj-name>
+proj: create_dir replace_name ## Create new project from this one. ARGS: <new-proj-name>
 	@printf "Successfully creaated project \033[36m$(RUN_ARGS)\033[0m\n"
 
 create_dir:
@@ -24,11 +24,6 @@ create_dir:
 	@rsync -aq . ../$(RUN_ARGS) --exclude .git --exclude Makefile --exclude README.md
 	@mv ../$(RUN_ARGS)/proj_Makefile ../$(RUN_ARGS)/Makefile
 	@mv ../$(RUN_ARGS)/proj_README.md ../$(RUN_ARGS)/README.md
-
-create_repo:
-	@printf "Creaate git repository for \033[36m$(RUN_ARGS)\033[0m\n"
-	@cd ../$(RUN_ARGS) && \
-		git init && git add --all
 
 replace_name:
 	@printf "Replace project name with \033[36m$(RUN_ARGS)\033[0m in all files\n"
@@ -41,7 +36,7 @@ replace_name:
 		done && \
 		git add --all
 
-init: ## Install package and its dependencies
+init: ## Create virtual environment and install this package and its dependencies
 	python -m venv .venv
 	source .venv/bin/activate \
 	&& python -m pip install --upgrade pip \

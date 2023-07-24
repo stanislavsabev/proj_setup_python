@@ -6,7 +6,7 @@ PROJ_NAME=python_proj
 help: ## Show this message
 	@awk 'BEGIN {FS = ":.*##"; printf "Usage:\n  make \033[36m<target> [args...]\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-init: ## Install package and its dependencies
+init: ## Create virtual environment and install this package and its dependencies
 	python -m venv .venv
 	source .venv/bin/activate \
 	&& python -m pip install --upgrade pip \
